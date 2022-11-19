@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>listar jugadores</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<div class="container">
+		<main>
+			<div class="py-5 text-center">
+				<h1> Listado de jugadores</h1>
+				<div>
+
+					<button><a href="/jugador/crear">AÑADIR JUGADOR</a></button>
+				</div>
+				<div class="seleccionados">
+					<h2>Seleccionados</h2>
+					<span th:text="${cantidad}"></span>
+					<th:block th:if="${cantidad >= 10}">
+						<span><a th:href="@{/partido/guardarElegidos}">Armar Mezcladito</a></span>
+					</th:block>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Ataque</th>
+							<th scope="col">Defensa</th>
+							<th scope="col">Arquero</th>
+							<th scope="col">Acciones</th>
+						</tr>
+					</thead>
+					<tr th:each="jugador : ${jugadores}">
+						<td th:text="${jugador.nombre}"></td>
+						<td th:text="${jugador.apellido}"></td>
+						<td th:text="${jugador.ataque}"></td>
+						<td th:text="${jugador.defensa}"></td>
+						<td>
+							<span th:if="${jugador.arquero == true}" th:text="SI"></span>
+							<span th:if="${jugador.arquero == false}" th:text="NO"></span>
+						</td>
+						<td>
+							<th:block>
+								<span th:if="${jugador.activo}">
+									<p>Seleccionado
+										<a th:href="${'/jugador/quitarseleccion?id=' + jugador.id}">-Quitar
+											seleccion</a></p>
+								</span>
+								<span th:if="${jugador.activo == false}"><a
+										th:href="${'/jugador/seleccionar?id=' + jugador.id}">Seleccionar</a>
+								</span>
+							</th:block>
+						</td>
+
+						<!--<td>
+							<a th:href="${'/alumno/eliminar?id=' + alumno.id}">Eliminar</a>
+						</td>
+						<td>
+							<a th:href="${'/alumno/editar?id=' + alumno.id}">Modificar</a>
+						</td>-->
+
+					</tr>
+
+				</table>
+
+
+
+				<th:block th:if="${jugadores == null or jugadores.isEmpty()}">
+					<div style="color: red">
+						<h3> Aun no hay jugadores</h3>
+					</div>
+				</th:block>
+		</main>
+	</div>
+
+</body>
+
+</html>

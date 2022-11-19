@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>listar jugadores</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+	<div class="container">
+		<main>
+			<div class="py-5 text-center">
+				<h1> Listado de jugadores</h1>
+				<div>
+
+					<button><a href="/jugador/crear">AÑADIR JUGADOR</a></button>
+				</div>
+				<div class="seleccionados">
+					<h2>Seleccionados</h2>
+					<span th:text="${cantidad}"></span>
+					<th:block th:if="${cantidad >= 10}">
+						<span><a th:href="@{/partido/guardarElegidos}">Armar Mezcladito</a></span>
+					</th:block>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Equipo1</th>
+							<th scope="col">Equipo2</th>
+						</tr>
+					</thead>
+					<tr th:each="partido : ${partidos}">
+						<td th:text="${partido.equipo1}"></td>
+						<td th:text="${partido.equipo2}"></td>
+					
+
+					</tr>
+
+				</table>
+
+		</main>
+	</div>
+
+</body>
+
+</html>

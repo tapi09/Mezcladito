@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+  </head>
+  <body>
+    <div>
+      <h1>AÑADIR JUGADOR</h1>
+    </div>
+    <form class="needs-validation" th:action="@{/jugador/guardar}" method="POST">
+    <div class="nombre">NOMBRE<input class="contorno" type="text" name="nombre" required></div>
+    </br>
+    <div class="nombre">APELLIDO<input class="contorno" type="text" name="apellido" required></div>
+    <div class="ppal">
+      ATAQUE
+      <select type="number" name="ataque" id="ataque">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      
+    </div>
+    <div class="ppal">
+      DEFENSA
+      <select type="number" name="defensa" id="defensa">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+
+    <div class="ppal">
+      ARQUERO
+      <select type="boolean" name="arquero" id="arquero">
+        <option value="true">Si</option>
+        <option value="false">No</option>
+      </select>
+    </div>
+   	<div class="ppal">
+    <button class="btn btn-success" type="submit" style="float:right;">Guardar </button>
+   	</div>
+   	<div class="ppal">
+    <button class="btn btn-success" type="menu" style="float:right;"><a class="volver" href="/">VOLVER AL MENÚ</a> </button>
+   	</div>
+   	
+    </form>
+  </body>
+</html>
